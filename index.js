@@ -2,10 +2,11 @@
 
 var depscan = require('depscan')
 var valiquire = require('valiquire')
+var path = require('path')
 
 // check for unused or missing dependencies in package.json
 console.log('Checking for unused or missing dependencies in package.json...')
-var scan = depscan('.', __dirname).report()
+var scan = depscan('.', path.resolve('.')).report()
 if (scan.missing.length) {
   console.error('Dependencies missing in package.json: ' + scan.missing.join(', '))
   process.exit(1)
