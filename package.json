@@ -1,0 +1,18 @@
+{
+  "name": "sanitycheck",
+  "author": "jden <jason@denizac.org>",
+  "version": "0.1.0",
+  "description": "ensure that all deps are present and accounted for CI / CD",
+  "keywords": ["continuous integration", "testing", "test", "continuous deployment", "dependencies", "dependency"],
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "git@github.com:jden/node-sanitycheck.git",
+  "license": "ISC",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.19.0"
+  }
+}
