@@ -3,10 +3,20 @@
   "author": "jden <jason@denizac.org>",
   "version": "0.1.0",
   "description": "ensure that all deps are present and accounted for CI / CD",
-  "keywords": ["continuous integration", "testing", "test", "continuous deployment", "dependencies", "dependency"],
+  "keywords": [
+    "continuous integration",
+    "testing",
+    "test",
+    "continuous deployment",
+    "dependencies",
+    "dependency"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "mocha"
+  },
+  "bin": {
+    "sanitycheck": "./index.js"
   },
   "repository": "git@github.com:jden/node-sanitycheck.git",
   "license": "ISC",
@@ -14,5 +24,9 @@
   "devDependencies": {
     "chai": "^1.9.1",
     "mocha": "^1.19.0"
+  },
+  "dependencies": {
+    "depscan": "git://github.com/jden/node-depscan.git#655e108c0e15c5bba22953b4ee1c803c1fc0c0f6",
+    "valiquire": "^0.3.0"
   }
 }
