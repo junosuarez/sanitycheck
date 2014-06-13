@@ -1,7 +1,7 @@
 {
   "name": "sanitycheck",
   "author": "jden <jason@denizac.org>",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "ensure that all deps are present and accounted for CI / CD",
   "keywords": [
     "continuous integration",
@@ -26,7 +26,7 @@
     "mocha": "^1.19.0"
   },
   "dependencies": {
-    "depscan": "git://github.com/jden/node-depscan.git#655e108c0e15c5bba22953b4ee1c803c1fc0c0f6",
+    "depscan": "^0.4.0",
     "valiquire": "^0.3.0"
   }
 }
