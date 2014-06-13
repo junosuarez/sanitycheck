@@ -51,7 +51,7 @@ Cannot resolve "./SUB" because:
 
 
 ## kudos
-makes use of excellent work from [@thlorenz](https://github.com/thlorenz) in [valiquire](https://npm.im/valiquire) and [@justaz](https://github.com/justaz) in [depscan](https://npm.im/depscan)
+makes use of excellent work from [@thlorenz](https://github.com/thlorenz) in [valiquire](https://npm.im/valiquire) and [@jutaz](https://github.com/jutaz) in [depscan](https://npm.im/depscan)
 
 ## contributors
 
