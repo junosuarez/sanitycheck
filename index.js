@@ -30,3 +30,23 @@ valiquire('.', false, function (err, validationErrors) {
 
   console.log('OK')
 })
+
+
+var pkg = require(path.join(process.cwd(),'package.json'));
+var duplicates = [];
+if(pkg.dependencies && pkg.devDependencies) {
+  console.log('Validating package duplicates...')
+
+  var devDependencies = Object.keys(pkg.devDependencies);
+  Object.keys(pkg.dependencies).forEach(function(key){
+    if(devDependencies.indexOf(key) > -1) {
+      duplicates.push(key);
+    }
+  });
+  if(duplicates.length > 0){
+    console.error(duplicates.length + ' duplicates in devDependencies/dependencies:\n' + duplicates.toString() + '\n\n')
+    process.exit(1)
+  }
+
+  console.log('OK')
+}
