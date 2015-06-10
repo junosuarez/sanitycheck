@@ -1,7 +1,7 @@
 {
   "name": "sanitycheck",
   "author": "jden <jason@denizac.org>",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "ensure that all deps are present and accounted for CI / CD",
   "keywords": [
     "continuous integration",
