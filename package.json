@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "depscan": "^0.4.1",
-    "valiquire": "^0.3.0"
+    "valiquire-silent": "^0.3.1",
+    "xtend": "^4.0.0"
   }
 }

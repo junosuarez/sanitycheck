@@ -1,17 +1,40 @@
 #!/usr/bin/env node
 
 var depscan = require('depscan')
-var valiquire = require('valiquire')
 var path = require('path')
+var extend = require('xtend')
+var assert = require('assert')
+var valiquire = require('valiquire-silent')
+
+var base = path.resolve('.')
+var flags = {
+  verbose: process.argv.indexOf('--verbose') !== -1
+}
+
+function logVerbose (msg) {
+  if (flags.verbose) {
+    console.log(msg)
+  }
+}
+
+var packageJson = require(path.resolve(base, 'package.json'))
+var options = extend({
+  ignoreUnused: []
+}, packageJson.sanitycheck)
+assert(Array.isArray(options.ignoreUnused), 'options.ignoreUnused must be an array of strings')
 
 // check for unused or missing dependencies in package.json
-console.log('Checking for unused or missing dependencies in package.json...')
-var scan = depscan('.', path.resolve('.')).report()
+logVerbose('Checking for unused or missing dependencies in package.json...')
+var scan = depscan('.', base).report()
 if (scan.missing.length) {
   console.log('Dependencies missing in package.json: ' + scan.missing.join(', '))
   console.log('These should be added.')
   process.exit(1)
 }
+
+scan.unused = scan.unused.filter(function (dep) {
+  return options.ignoreUnused.indexOf(dep) === -1
+})
 if (scan.unused.length) {
   console.log('Unused dependencies in package.json: ' + scan.unused.join(', '))
   console.log('These should be removed.')
@@ -21,7 +44,7 @@ if (scan.unused.length) {
 var pkg = require(path.join(process.cwd(), 'package.json'))
 var duplicates = []
 if (pkg.dependencies && pkg.devDependencies) {
-  console.log('Validating duplicate packages...')
+  logVerbose('Validating duplicate packages...')
 
   var devDependencies = Object.keys(pkg.devDependencies)
   Object.keys(pkg.dependencies).forEach(function (key) {
@@ -35,21 +58,22 @@ if (pkg.dependencies && pkg.devDependencies) {
     process.exit(1)
   }
 
-  console.log('OK')
+  logVerbose('OK')
 }
 
 // validate require statements (capitalization, relative paths, etc)
-console.log('Validating all require statements...')
+logVerbose('Validating all require statements...')
+
 valiquire('.', false, function (err, validationErrors) {
-  console.log('')
+  logVerbose('')
   if (err) {
-    console.error(err)
+    console.log(err)
     process.exit(1)
   }
   if (validationErrors.length) {
-    console.error(validationErrors.length + ' Errors:\n' + validationErrors.join('\n\n'))
+    console.log(validationErrors.length + ' Errors:\n' + validationErrors.join('\n\n'))
     process.exit(1)
   }
 
-  console.log('OK')
+  logVerbose('OK')
 })
