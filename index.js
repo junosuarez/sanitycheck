@@ -18,18 +18,18 @@ if (scan.unused.length) {
   process.exit(1)
 }
 
-var pkg = require(path.join(process.cwd(),'package.json'));
-var duplicates = [];
-if(pkg.dependencies && pkg.devDependencies) {
+var pkg = require(path.join(process.cwd(), 'package.json'))
+var duplicates = []
+if (pkg.dependencies && pkg.devDependencies) {
   console.log('Validating duplicate packages...')
 
-  var devDependencies = Object.keys(pkg.devDependencies);
-  Object.keys(pkg.dependencies).forEach(function(key){
-    if(devDependencies.indexOf(key) > -1) {
-      duplicates.push(key);
+  var devDependencies = Object.keys(pkg.devDependencies)
+  Object.keys(pkg.dependencies).forEach(function (key) {
+    if (devDependencies.indexOf(key) > -1) {
+      duplicates.push(key)
     }
-  });
-  if(duplicates.length > 0){
+  })
+  if (duplicates.length > 0) {
     console.log(duplicates.length + ' found in both dependencies and devDependencies:\n' + duplicates.toString() + '\n\n')
     console.log('These should only be declared once in package.json.')
     process.exit(1)
@@ -53,5 +53,3 @@ valiquire('.', false, function (err, validationErrors) {
 
   console.log('OK')
 })
-
-

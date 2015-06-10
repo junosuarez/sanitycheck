@@ -1,6 +1,9 @@
 # sanitycheck
 ensure that all deps are present and accounted for CI / CD
 
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+
+
 ## usage
 
 add it as a dev dependency to your project
