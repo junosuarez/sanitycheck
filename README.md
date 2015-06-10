@@ -8,18 +8,19 @@ add it as a dev dependency to your project
 $ npm install --save-dev sanitycheck
 ```
 
-and add it as an npm script task by editing your `package.json`:
+and add it to your test command by editing your `package.json`:
 ```javscript
 {
   "scripts": {
-    "sanitycheck": "sanitycheck"
+    "test": "sanitycheck && <test runner>"
   }
 }
 ```
 
-Now you can run it using `$ npm run sanitycheck` and add it to your favorite testing or CI scripts.
+Now you can run it using `$ npm test` and add it to your favorite testing or CI scripts.
 
-If there are any errors, it exits with an error code of 1.
+If there are any errors, it exits with an error code of 1. As of 2.0.0, dependencies found
+in package.json but not used in code count as errors.
 
 ## example output:
 
